@@ -5,11 +5,13 @@ date: '2018-09-27'
 output: github_document
 ---
 
-# STAT545 Homework 03: Data Manipulation and Exploration using dplyr accompanied by visualizations using ggplot2.
+# STAT545 Homework 03: 
+
+## Data Manipulation and Exploration using dplyr accompanied by visualizations using ggplot2.
 
 ### Homework Tasks:
 -   [Get the maximum and minimum of GDP per capita for all continents.](#get-the-maximum-and-minimum-of-gdp-per-capita-for-all-continents.)
--   [Compute a trimmed mean of life expectancy for different years. Or a weighted mean, weighting by population. Just try something other than the plain vanilla mean.](#compute-a-trimmed-mean-of-life-expectancy-for-different-years.-or-a-weighted-mean,-weighting-by-population.-just-try-something-other-than-the-plain-vanilla-mean)
+-   [Compute a trimmed mean of life expectancy for different years or a weighted mean weighting by population. Just try something other than the plain vanilla mean.](#compute-a-trimmed-mean-of-life-expectancy-for-different-years-or-a-weighted-mean-weighting-by-population)
 -   [How is life expectancy changing over time on different continents?](#how-is-life-expectancy-changing-over-time-on-different-continents)
 -   [Find countries with interesting stories. Open-ended and, therefore, hard. Promising but unsuccessful attempts are encouraged. This will generate interesting questions to follow up on in class.](#find-countries-with-interesting-stories.-open-ended-and,-therefore,-hard.-promising-but-unsuccessful-attempts-are-encouraged.-this-will-generate-interesting-questions-to-follow-up-on-in-class)
 -   [But I want to do more](#but-i-want-to-do-more)
@@ -19,7 +21,7 @@ output: github_document
 
 ```{r}
 
-suppressPackageStartupMessages(library(tidyverse)) d
+suppressPackageStartupMessages(library(tidyverse)) 
 suppressPackageStartupMessages(library(gapminder))
 suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(knitr))
@@ -84,12 +86,12 @@ grid.arrange(tableGrob((min_max_gdpPercap),theme = my_theme),min_max,nrow=1,widt
 
 ```
 
-To plot a table and plot side by side, I visited [this](https://cran.r-project.org/web/packages/gridExtra/vignettes/tableGrob.html) helful cran extract at. From the above table and plot, we can deduce that Asia had the highest maximum gdp per capita while Africa had the lowest. We can also see that Africa had the lowest minimum gdp per capita, followed by Asia, whild Oceania had the highest lowest gdp per capita.
+To have a table and plot side by side, I visited [this](https://cran.r-project.org/web/packages/gridExtra/vignettes/tableGrob.html) helpful cran extract. From the above table and plot, we can deduce that Asia had the highest maximum gdp per capita while Africa had the lowest. We can also see that Africa had the lowest minimum gdp per capita, followed by Asia, while Oceania had the highest lowest gdp per capita.
 
 
 ## Homework Task 2:
 
-#### Compute a trimmed mean of life expectancy for different years. Or a weighted mean, weighting by population. Just try something other than the plain vanilla mean. 
+#### Compute a trimmed mean of life expectancy for different years or a weighted mean weighting by population. Just try something other than the plain vanilla mean. 
 
 #### Computing the trimmed mean life expectancy for different years:
 ```{r trimmed_mean}
@@ -103,20 +105,14 @@ t_mean <- trimmed_mean %>%
   geom_bar(stat = "identity", width=4, fill = "gray80", color="gray60")+
   labs(y="trimmed_mean")+
   theme_light()+  
-  scale_x_continuous("year", labels = as.character(trimmed_mean$year), breaks = trimmed_mean$year)
-
-t_mean <- trimmed_mean %>% 
-  ggplot(aes(year,trmd_mean))+
-  geom_bar(stat = "identity", width=4, fill = "gray80", color="gray60")+
-  labs(y="trimmed_mean")+
-  theme_light()+  
-  scale_x_continuous("year", labels = as.character(trimmed_mean$year), breaks = trimmed_mean$year)
+  scale_x_continuous("year", labels = as.character(trimmed_mean$year), breaks = trimmed_mean$year)+
+  theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
 
 grid.arrange(tableGrob((trimmed_mean)),t_mean,nrow=1,widths = 3:4)
 
 ```
 
-The generic function for the [(trimmed) arithmetic mean](https://stat.ethz.ch/R-manual/R-devel/library/base/html/mean.html) is a method of averaging that removes a small designated percentage of the largest and smallest values before calculating the mean. From the above table and plot, we can see and deduce that over the years, the mean life expectancy gradually increased.
+The generic function for the [(trimmed) arithmetic mean](https://stat.ethz.ch/R-manual/R-devel/library/base/html/mean.html) is a method of averaging that removes a small designated percentage of the largest and smallest values before calculating the mean. From the above table and plot, we can see and deduce that over the years, the mean life expectancy gradually increased with the highest being the most current year.
 
 ## Homework Task 3:
 
@@ -132,9 +128,10 @@ mean_lifeExp_cont <- gapminder %>%
 mean_lifeExp_cont %>% 
   head(20) %>% 
   kable
+
 ```
 
-This table is too long and is being truncated when passed through the tableGrob function and table headers not seen. Because of this, I decided to call the kable() function and defined the number of rows to be shown - mostly to show the structure of the table. 
+This table was too long and is being truncated when passed through the tableGrob function. The table headers were also not seen. Because of this, I decided to call the kable() function and defined the number of rows to be shown - mostly to show the structure of the table given the extreme length of the table. 
 
 
 #### Below are plots showing how life expectancy is changing over time on different continents
@@ -168,7 +165,7 @@ plot_grid(p1, p2,p3,labels = "AUTO", nrow=3)
 
 ```
 
-From the above plots, we can see that over the years, In figure **A**, we can see that the the mean life expectancy gradually improved over the years, in **B** we see that Ocean had the highest gradual improvement in life expectancy followed by Europe while Africa consistently had a low life expectancy over the years. In **C**, we see both the gradual inprovement of mean life expectancy and its distribution in the various continents with Oceania having the highest while Africa had the lowes.
+From the above plots, in figure **A**, we can see that the the mean life expectancy gradually improved over the years, in **B** we see that Ocean had the highest gradual improvement in life expectancy followed by Europe while Africa consistently had a low life expectancy over the years. In figure **C**, we see both the gradual inprovement of mean life expectancy and its distribution in the various continents with Oceania having the highest while Africa had the lowest.
 
 ## Homework Task 4:
 
@@ -176,7 +173,7 @@ From the above plots, we can see that over the years, In figure **A**, we can se
 
 #### Idnentifying continent specific outliers
 
-I will begin with a preliminary sniff of all continents to identify those with interesting patterns that may hint on the posibility of them having countries with interesting stories. 
+I will begin with a **preliminary sniff** of all continents to identify those with interesting patterns that may hint on the posibility of containing countries with interesting stories. 
 
 ```{r continent_sniff}
 
@@ -187,7 +184,7 @@ ggplot(gapminder, aes(gdpPercap,lifeExp)) +
 
 ```
 
-From the above plot, **Asia**, **Europe** and **Africa** seem to have some countires that are off the central tendency of the respective continents. Let's take a closer look into them. Below, I will identify the outliers in each continent. This was a [helful resource](https://github.com/slowkow/ggrepel/issues/17) resource. [This resource](https://socviz.co/workgeoms.html) was helpful too.
+From the above plot, **Asia**, **Europe** and **Africa** seem to have some countires that are far from the mean of the respective continents. Let's take a closer look into them. Below, I will identify the outliers in each continent. This was a [helful resource](https://github.com/slowkow/ggrepel/issues/17) resource. [This resource](https://socviz.co/workgeoms.html) was helpful too.
 
 #### Identifying outliers in Asia
 ```{r asia_outliers}
@@ -232,9 +229,9 @@ gapminder %>%
 
 ```
 
-Not as dramatic as Africa :smile:, but let's see what other plots tell us.
+Europe is not as dramatic as Africa :smile:, but let's see what other plots tell us.
 
-#### Below, I fiuther look into continent specific countries
+#### Below, I further look into continent specific countries
 ```{r africa_countries}
 
 Africa_check <- gapminder %>% filter(continent=="Africa") 
@@ -247,7 +244,7 @@ Africa_check %>%
   scale_x_continuous(breaks = scales::pretty_breaks(10))
 ```
 
-These are quite a number of countries with so many overlapping lines. But we can see that Gabon and Mauritania were almost neck to neck for the highest gdp per capita. We also see that both countries experienced a sharp drop in 1974 and 1874 respectively. However, this plot is not so helpful because of the numberous countries. Below are other types of plots that will be of great help in picking out countries of interest.
+These are quite a number of countries with so many overlapping lines. But we can see that Gabon and Mauritania were almost neck to neck for the highest gdp per capita. We also see that both countries experienced a sharp drop in 1974 and 1874 respectively. However, in this case, this plot is not so helpful because of the numberous countries. Below are other types of plots that will be of great help in picking out countries of interest.
 
 ```{r asia_countries}
 
@@ -261,7 +258,7 @@ Asia_check %>%
 
 ```
 
-Still see an unclear representation with Asia, however we can see an interestingly high gdp per capita in Kuwait with a sharp drop after 1972. This also confirms that representation seen in the box plots above.
+We still see an unclear representation of Asia's countries, however we can see an interestingly high gdp per capita in Kuwait with a sharp drop after 1972. This also confirms that representation seen in the box plots above.
 
 ```{r europe_countries}
 
@@ -279,7 +276,7 @@ We still see a gradual improvement in gdp per capita over the years. Ireland see
 
 Let's see whether other representations can help us identify previously identified outliers.
 
-### Sanity Check into all continents fo interesting countries
+### Sanity Check into all continents for interesting countries
 
 From all the above plots, we seem to see some countries with interesting patterns. I will do a sanity check to confrim my findings. I will also look into life expectancy - out of curiosity.
 
@@ -385,7 +382,7 @@ Eur2 <- gapminder %>%
 plot_grid(Eur1, Eur2, ncol=2)
 ```
 
-Here, we dont see patters as interesting as those seen in previous plots, but Turkey seems to have a consistently low but gradually improving life expectancy. Its gdp per capita, Bulgaria's and Albanias are equally low.
+Here, we don't see patters as interesting as those seen in previous plots, but Turkey seems to have a consistently low but gradually improving life expectancy. Its gdp per capita, Bulgaria's and Albanias are equally low.
 
 ### A closer look into countries with intersting stories (I will focus on Cambodia, Rwanda and Kuwait)
 
@@ -429,7 +426,7 @@ plot_grid(c1, c2, c3, labels = "AUTO", nrow=3, ncol=1)
 
 ```
 
-As earlier mentioned, we see that Cambodia had a strikingly low life expectancy in 1977. What could have caused this? An [online review](https://www.ncbi.nlm.nih.gov/books/NBK223346/) shows that Cambodia was aflicted by war in which many people died. Read more. However, we see a sharp rise after 1977 and a stready improvement from 1882 onward. We also see a slight decline in gdp per capita during the years in which the cival war begun but with a steady improvement thereon.
+As earlier mentioned, we see that Cambodia had a strikingly low life expectancy in 1977. What could have caused this? An [online review](https://www.ncbi.nlm.nih.gov/books/NBK223346/) shows that Cambodia was aflicted by war in which many people died. However, we see a sharp rise after 1977 and a steady improvement from 1882 onward. We also see a slight decline in gdp per capita during the years in which the cival war begun but with a steady improvement thereon.
 
 #### A closer look into Rwanda 
 
@@ -471,7 +468,7 @@ plot_grid(r1, r2, r3, labels = "AUTO", nrow=3, ncol=1)
 
 ```
 
-In line with previously seen analyses, because of the Rwandan genocide, we see a strikingly lows life expectancy in Rwanda in 1992. We also see an interesting pattern in the gdp per capita of this country with the lowest being reported in 1967. 
+In line with previously seen analyses, because of the Rwandan genocide, we see a strikingly low life expectancy in Rwanda in 1992. We also see an interesting pattern in the gdp per capita of this country with the lowest being reported in 1967. 
 
 #### A closer look into Kuwait 
 
@@ -525,9 +522,9 @@ In the above sections I present the usage of two awesome functions and applicati
 
 For this section, I will look into the spread of GDP per capita within the continents and use xtable and pander functions to generate tables.
 
-To determine the spread of GDP per capita within the continents, first, I needed to look up the statistical meaning of "spread" :smile:. I found [this resource](https://www.statisticshowto.datasciencecentral.com/measures-of-spread/) very useful in enlightening me about the necessary terms that define the spread of a variable in a dataset.
+To determine the spread of GDP per capita within the continents, first, I needed to look up the statistical meaning of "spread" :smile:. I found [this resource](https://www.statisticshowto.datasciencecentral.com/measures-of-spread/) very useful in enlightening me on the necessary terms that define the spread of a variable in a dataset.
 
-These are the **meassures of spread** that I applied to the GDP per capita within continents:
+These are the **meassures of spread** that I found and applied to the GDP per capita within continents:
 1. The **Range** 
 2. The **Standard deviation**,
 3. The **variance** and finally,
@@ -541,6 +538,7 @@ gapminder %>%
   filter(continent=='Asia') %>% 
   select(gdpPercap) %>% 
   range
+
 ```
 
 
@@ -600,28 +598,30 @@ meassures_of_spread <- cbind(spread_gdpPercap,continent_quantiles)
 
 ```
 
-#### First I will show the table variation using kable
+Now that I have a dataframe `meassures_of_spread`, below I show how we can represent it using different functions.
+
+#### First I will show the table using kable()
 ```{r my_kable_table}
 
 kable(meassures_of_spread)
 
 ```
 
-#### Applying the xtable function - this produces latex tables in PDF documents
+#### Applying the xtable() function - this produces latex tables in PDF documents
 ```{r my_xtable}
 
 xtable(meassures_of_spread)
 
 ```
 
-#### Applying the pander function
+#### Applying the pander() function
 ```{r my_pander_table}
 
 pander(meassures_of_spread)
 
 ```
 
-As we can see above, the table creater using pader() was split into two. If we do not want the table split, then we can run the following.
+As we can see above, the table creater using pader() was split into two. If we don't need as split table split, then we can run the following:
 
 ```{r my_pander_table_not_split}
 
@@ -630,7 +630,7 @@ pander(meassures_of_spread)
 
 ```
 
-As we can see above, there are many awesome and exciting ways of producing tables. The tables can also be produced to suit the kind of documents we are working on! It could be a **word file**, **latex** or **txt** file!! 
+As we can see above, there are many awesome and exciting ways of producing tables. The tables can also be produced to suit the kind of documents we are working on. It could be a **word file**, **latex** or **txt** file!! 
 
 
 
