@@ -621,7 +621,7 @@ pander(meassures_of_spread)
 
 ```
 
-As we can see above, the table creater using pader() was split into two. If we don't need as split table split, then we can run the following:
+As we can see above, the table created using pader() was split into two. If we don't need as split table, then we can run the following:
 
 ```{r my_pander_table_not_split}
 

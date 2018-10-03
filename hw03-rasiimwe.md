@@ -697,7 +697,7 @@ xtable(meassures_of_spread)
 ```
 
     ## % latex table generated in R 3.5.0 by xtable 1.8-3 package
-    ## % Tue Oct  2 23:31:24 2018
+    ## % Tue Oct  2 23:41:28 2018
     ## \begin{table}[ht]
     ## \centering
     ## \begin{tabular}{rlrrrrrrrr}
@@ -839,7 +839,7 @@ pander(meassures_of_spread)
 </tbody>
 </table>
 
-As we can see above, the table creater using pader() was split into two. If we don't need as split table split, then we can run the following:
+As we can see above, the table created using pader() was split into two. If we don't need as split table, then we can run the following:
 
 ``` r
 panderOptions('table.split.table', Inf)
