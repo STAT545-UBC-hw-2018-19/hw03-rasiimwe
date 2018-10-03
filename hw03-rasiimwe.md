@@ -128,7 +128,7 @@ t_mean <- trimmed_mean %>%
 grid.arrange(tableGrob((trimmed_mean)),t_mean,nrow=1,widths = 3:4)
 ```
 
-![](hw03-rasiimwe_files/figure-markdown_github/trimmed%20mean-1.png)
+![](hw03-rasiimwe_files/figure-markdown_github/trimmed_mean-1.png)
 
 The generic function for the [(trimmed) arithmetic mean](https://stat.ethz.ch/R-manual/R-devel/library/base/html/mean.html) is a method of averaging that removes a small designated percentage of the largest and smallest values before calculating the mean. From the above table and plot, we can see and deduce that over the years, the mean life expectancy gradually increased.
 
@@ -355,7 +355,7 @@ a2 <- gapminder %>%
   scale_fill_gradientn(colors = brewer.pal(9, "GnBu"), trans = "sqrt") + 
   theme_gray() +  
   ggtitle("Life Expectancy") +
-  theme(axis.title.y=element_blank())+ #removing y axix label to right plot as the lables on left plot still apply to right = removing redundacy. Here I leave the axis labels for readability but we can also remove them using: axis.text.y=element_blank()
+  theme(axis.title.y=element_blank(),axis.text.y=element_blank())+ #removing y axix label to right plot as the lables on left plot still apply to right = removing redundacy. Here I leave the axis labels for readability but we can also remove them using: axis.text.y=element_blank()
   xlab("year")+
   theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))+ #rotating x lables to make them visible
   scale_x_continuous(breaks=gapminder$year) #calling all years from dataset as breaks
@@ -385,7 +385,8 @@ af1 <- gapminder %>%
   ggtitle("GDP per capita") +
   ylab("countries in Africa") +
   theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))+
-  xlab("year")+theme(legend.position="none")+
+  xlab("year")+
+  theme(legend.position="none")+
   scale_x_continuous(breaks=gapminder$year)
 ```
 
@@ -401,7 +402,7 @@ af2 <- gapminder %>%
   scale_fill_gradientn(colors = brewer.pal(9, "GnBu"), trans = "sqrt") + 
   theme_gray() +  
   ggtitle("Life Expectancy") +
-  theme(axis.title.y=element_blank())+ 
+  theme(axis.title.y=element_blank(),axis.text.y=element_blank())+ 
   xlab("year")+
   theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))+ 
   scale_x_continuous(breaks=gapminder$year) 
@@ -447,7 +448,7 @@ Eur2 <- gapminder %>%
   scale_fill_gradientn(colors = brewer.pal(9, "GnBu"), trans = "sqrt") + 
   theme_gray() +  
   ggtitle("Life Expectancy") +
-  theme(axis.title.y=element_blank())+ 
+  theme(axis.title.y=element_blank(),axis.text.y=element_blank())+ 
   xlab("year")+
   theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))+ 
   scale_x_continuous(breaks=gapminder$year) 
@@ -697,7 +698,7 @@ xtable(meassures_of_spread)
 ```
 
     ## % latex table generated in R 3.5.0 by xtable 1.8-3 package
-    ## % Tue Oct  2 21:00:43 2018
+    ## % Tue Oct  2 21:14:54 2018
     ## \begin{table}[ht]
     ## \centering
     ## \begin{tabular}{rlrrrrrrrr}

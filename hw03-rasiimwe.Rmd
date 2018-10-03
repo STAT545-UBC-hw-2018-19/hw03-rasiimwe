@@ -92,7 +92,7 @@ To plot a table and plot side by side, I visited [this](https://cran.r-project.o
 #### Compute a trimmed mean of life expectancy for different years. Or a weighted mean, weighting by population. Just try something other than the plain vanilla mean. 
 
 #### Computing the trimmed mean life expectancy for different years:
-```{r trimmed mean}
+```{r trimmed_mean}
 
 trimmed_mean <- gapminder %>% 
   group_by(year) %>% 
@@ -308,7 +308,7 @@ a2 <- gapminder %>%
   scale_fill_gradientn(colors = brewer.pal(9, "GnBu"), trans = "sqrt") + 
   theme_gray() +  
   ggtitle("Life Expectancy") +
-  theme(axis.title.y=element_blank())+ #removing y axix label to right plot as the lables on left plot still apply to right = removing redundacy. Here I leave the axis labels for readability but we can also remove them using: axis.text.y=element_blank()
+  theme(axis.title.y=element_blank(),axis.text.y=element_blank())+ #removing y axix label to right plot as the lables on left plot still apply to right = removing redundacy. Here I leave the axis labels for readability but we can also remove them using: axis.text.y=element_blank()
   xlab("year")+
   theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))+ #rotating x lables to make them visible
   scale_x_continuous(breaks=gapminder$year) #calling all years from dataset as breaks
@@ -331,7 +331,8 @@ af1 <- gapminder %>%
   ggtitle("GDP per capita") +
   ylab("countries in Africa") +
   theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))+
-  xlab("year")+theme(legend.position="none")+
+  xlab("year")+
+  theme(legend.position="none")+
   scale_x_continuous(breaks=gapminder$year)
 
 af2 <- gapminder %>%
@@ -342,7 +343,7 @@ af2 <- gapminder %>%
   scale_fill_gradientn(colors = brewer.pal(9, "GnBu"), trans = "sqrt") + 
   theme_gray() +  
   ggtitle("Life Expectancy") +
-  theme(axis.title.y=element_blank())+ 
+  theme(axis.title.y=element_blank(),axis.text.y=element_blank())+ 
   xlab("year")+
   theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))+ 
   scale_x_continuous(breaks=gapminder$year) 
@@ -376,7 +377,7 @@ Eur2 <- gapminder %>%
   scale_fill_gradientn(colors = brewer.pal(9, "GnBu"), trans = "sqrt") + 
   theme_gray() +  
   ggtitle("Life Expectancy") +
-  theme(axis.title.y=element_blank())+ 
+  theme(axis.title.y=element_blank(),axis.text.y=element_blank())+ 
   xlab("year")+
   theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))+ 
   scale_x_continuous(breaks=gapminder$year) 
