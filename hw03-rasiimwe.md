@@ -3,8 +3,11 @@ hw03-rasiimwe.Rmd
 Rebecca Asiimwe
 2018-09-27
 
-STAT545 Homework 03: Data Manipulation and Exploration using dplyr accompanied by visualizations using ggplot2.
-===============================================================================================================
+STAT545 Homework 03:
+====================
+
+Data Manipulation and Exploration using dplyr accompanied by visualizations using ggplot2.
+------------------------------------------------------------------------------------------
 
 ### Homework Tasks:
 
@@ -17,7 +20,7 @@ STAT545 Homework 03: Data Manipulation and Exploration using dplyr accompanied b
 #### Loading all required packages for this assignment
 
 ``` r
-suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(tidyverse)) 
 ```
 
     ## Warning: package 'dplyr' was built under R version 3.5.1
@@ -116,14 +119,8 @@ t_mean <- trimmed_mean %>%
   geom_bar(stat = "identity", width=4, fill = "gray80", color="gray60")+
   labs(y="trimmed_mean")+
   theme_light()+  
-  scale_x_continuous("year", labels = as.character(trimmed_mean$year), breaks = trimmed_mean$year)
-
-t_mean <- trimmed_mean %>% 
-  ggplot(aes(year,trmd_mean))+
-  geom_bar(stat = "identity", width=4, fill = "gray80", color="gray60")+
-  labs(y="trimmed_mean")+
-  theme_light()+  
-  scale_x_continuous("year", labels = as.character(trimmed_mean$year), breaks = trimmed_mean$year)
+  scale_x_continuous("year", labels = as.character(trimmed_mean$year), breaks = trimmed_mean$year)+
+  theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
 
 grid.arrange(tableGrob((trimmed_mean)),t_mean,nrow=1,widths = 3:4)
 ```
@@ -214,7 +211,7 @@ Homework Task 4:
 
 #### Idnentifying continent specific outliers
 
-I will begin with a preliminary sniff of all continents to identify those with interesting patterns that may hint on the posibility of them having countries with interesting stories.
+I will begin with a **preliminary sniff** of all continents to identify those with interesting patterns that may hint on the posibility of them having countries with interesting stories.
 
 ``` r
 ggplot(gapminder, aes(gdpPercap,lifeExp)) + 
@@ -275,7 +272,7 @@ gapminder %>%
 
 Not as dramatic as Africa :smile:, but let's see what other plots tell us.
 
-#### Below, I fiuther look into continent specific countries
+#### Below, I further look into continent specific countries
 
 ``` r
 Africa_check <- gapminder %>% filter(continent=="Africa") 
@@ -698,7 +695,7 @@ xtable(meassures_of_spread)
 ```
 
     ## % latex table generated in R 3.5.0 by xtable 1.8-3 package
-    ## % Tue Oct  2 21:14:54 2018
+    ## % Tue Oct  2 22:49:20 2018
     ## \begin{table}[ht]
     ## \centering
     ## \begin{tabular}{rlrrrrrrrr}

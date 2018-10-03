@@ -19,7 +19,7 @@ output: github_document
 
 ```{r}
 
-suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(tidyverse)) d
 suppressPackageStartupMessages(library(gapminder))
 suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(knitr))
